@@ -17,15 +17,29 @@ import SwiftUI
 
 // var i : int
 
+// this is called the computed body
+/*
+ VStack {
+     Image(systemName: "globe")
+         .imageScale(.large)
+         .foregroundStyle(.tint)
+     Text("Hello sameer in 2030 this is our  first app in ios ")
+ }
+ .padding()
+ }
+ }
+ */
+
+
 struct ContentView: View {
-//var--varible  body--name : some View --- type
-    
+//var--varible  body--name : some View --- type of view decided on the
+//    
     var body: some View {
         VStack {
             Image(systemName: "globe")
                 .imageScale(.large)
                 .foregroundStyle(.tint)
-            Text("Hello sameer in 2030 this is our  first app in ios ")
+            Text("Hello sameer in 2030 this is our  first app in a  the ios ")
         }
         .padding()
     }
