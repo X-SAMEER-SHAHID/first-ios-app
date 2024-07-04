@@ -35,14 +35,24 @@ struct ContentView: View {
 //var--varible  body--name : some View --- type of view decided on the
 //    
     var body: some View {
-        VStack {
+//        vstack is the container which contain  all the structs and it can be align
+//        techically vstack is the function that can return a view of different type and tuple view and its bag of lets say the text and image
+        
+        VStack(alignment: .leading , spacing: 20){
+//            image is struct which behaves like a content view and it contain argumnets in
             Image(systemName: "globe")
                 .imageScale(.large)
                 .foregroundStyle(.tint)
-            Text("Hello sameer in 2030 this is our  first app in a  the ios ")
+            Text("Hello sameer shahid in 2030 this is our  first app in a  the ios ")
         }
+        
+//         padding is the function that can be come with view class for eg
         .padding()
+        
     }
+    
+    
+    
 }
 
 
