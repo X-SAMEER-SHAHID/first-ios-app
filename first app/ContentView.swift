@@ -1,62 +1,106 @@
-//
+
 //  ContentView.swift
 //  first app
-//
 //  Created by Sameer,s Macbook on 03/07/2024.
-//
-
 import SwiftUI
-// difference b=w oop ans the function programing in the gernal
-// oop = data encaplustation  and funtion al programming donot use that word at all
-// behaves like aaaaaaaa
-
-// content view behave like a view
-
-// struct is like the collection of the varibles and fuction
-// and the type of the struct is the contentview and View is like
-
-// var i : int
-
-// this is called the computed body
-/*
- VStack {
-     Image(systemName: "globe")
-         .imageScale(.large)
-         .foregroundStyle(.tint)
-     Text("Hello sameer in 2030 this is our  first app in ios ")
- }
- .padding()
- }
- }
- */
-
-
 struct ContentView: View {
-//var--varible  body--name : some View --- type of view decided on the
-//    
+    
+    let emojis : Array<String> = ["👻", "🕷️", "🎃", "👿","👻", "🕷️"]
+    @State var cardcount : Int = 4
+    
     var body: some View {
-//        vstack is the container which contain  all the structs and it can be align
-//        techically vstack is the function that can return a view of different type and tuple view and its bag of lets say the text and image
+        VStack {
         
-        VStack(alignment: .leading , spacing: 20){
-//            image is struct which behaves like a content view and it contain argumnets in
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello sameer shahid in 2030 this is our  first app in a  the ios ")
+            cards;
+                
+            Spacer()
+            
+            HStack {
+    
+                cardremove;
+                Spacer()
+                cardadd;
+            }
+            
+            
         }
-        
-//         padding is the function that can be come with view class for eg
+    }
+    
+    var cards : some View {
+        LazyVGrid( columns: [GridItem(.adaptive(minimum: 90))]){
+            ForEach(0..<cardcount, id: \.self) { index in
+                CardView(content: emojis[index])
+            }
+        }
+        .foregroundColor(.orange)
         .padding()
-        
     }
     
     
+    var cardremove: some View {
+        
+        Button(action: {
+            if cardcount>1{
+                cardcount -= 1
+            }
+        }, label: {
+            Image(systemName:"rectangle.stack.badge.minus.fill")
+            
+        })
+        
+        .foregroundColor(.blue)
+        .padding()
+        .imageScale(.large)
+        .font(.largeTitle)
+    }
+    
+    
+    var cardadd : some View {
+        Button(action: {
+            if cardcount<emojis.count{
+            cardcount += 1
+            }
+        }, label: {
+            Image(systemName:"rectangle.stack.badge.plus.fill")
+        
+        })
+        .foregroundColor(.blue)
+        .padding()
+        .imageScale(.large)
+        .font(.largeTitle)
+   }
+    
     
 }
 
 
+struct CardView: View {
+    @State  var isFace : Bool = true
+    var content : String
+    var body: some View {
+    ZStack(){
+           
+            let base = RoundedRectangle(cornerRadius: 12)
+            
+        Group {
+                base
+                    .foregroundColor(.white)
+                base
+                    .strokeBorder(lineWidth: 2)
+                Text(content).font(.largeTitle)
+            }
+                .opacity(isFace ? 1 : 0)
+                base.fill().opacity(isFace ? 0 : 1)
+        }
 
+        .onTapGesture {
+            isFace.toggle()
+        }
+    }
+  
+}
+ 
 #Preview {
     ContentView()
 }
+
